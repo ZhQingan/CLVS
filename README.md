@@ -2,45 +2,36 @@
 
 ---
 
-# Cross-Image Contrastive Decoding: Precise, Lossless Suppression of Language Priors in Large Vision-Language Models
+# Cross-Layer Vision Smoothing: Enhancing Visual Understanding via Sustained Focus on Key Objects in Large Vision-Language Models
 
-By exploiting the independence of language priors from visual inputs and the discrepancy of visual information across images, we propose **CICD** (cross-image contrastive decoding) to precisely and losslessly eliminate detrimental priors. [Paper Link](https://arxiv.org/abs/2505.10634)
+We propose Cross-Layer Vision Smoothing, a method that mitigates the layer-by-layer decay of visual attention to enable LVLMs to maintain sustained focus on key objects in the image, thereby enhancing their understanding of these objects.
 
 ---
 
 ## Setup
 
-#### Environment
+### Environment
 
 ```bash
-conda create -n cicd -y python=3.10
-conda activate cicd
+conda create -n clvs -y python=3.10
+conda activate clvs
 
 pip install -r requirements.txt
 ```
 
-**Note**: The dependencies are refered to LLaVA, InstructBLIP, Qwen-VL-Chat. For LLaVA-Next, Qwen2-VL-Instruct, and Qwen2.5-VL-Instruct, you can also easily set up the environment by following the instructions from their official repositories.
+**Note**: The dependencies are referred to LLaVA-v1.5. For LLaVA-Next and Qwen2.5-VL-Instruct, you can also easily set up the environment by following the instructions from their official repositories.
 
-#### Datasets
+### Datasets
 
 All benchmarks need to be processed into structurally consistent JSON files.
 
 Some samples could be found in `data/samples.json`.
 
-You can use `preprocess.py` to build data:
-```bash
-python preprocess.py \
---image_file /path/to/images \
---data_file /path/to/data.json \
---output_file /path \
---retrieve False
-```
+
+## Evaluate CLVS
 
 
-## Implementation
-
-
-#### Quick start
+### Quick start
 
 We developed a shell script `scripts/eval_all.sh` that can execute benchmarks end-to-end.
 
@@ -54,14 +45,13 @@ python ./eval/object_hallucination_vqa_${model_name}.py \
 --question-file /path/to/test.json \
 --image-folder /path \
 --answers-file /path/to/results.json
+
 ```
 
 **Evaluation**
 
 ```bash
-# POPE
-python eval_pope.py --ans_folder path/to/results.json
-# CHAIR
-python test_chair.py --cap_file ../path/to/results.json --coco_path /path/to/coco
+# POPE and R-Bench
+python eval.py --ans_folder path/to/results.json
 ```
-AMBER and DetailCaps has its own evaluation method; please refer the official repositories for result evaluation:  [AMBER](https://github.com/junyangwang0410/AMBER), [DetailCaps](https://github.com/foundation-multimodal-models/CAPTURE?tab=readme-ov-file)
+AMBER and MME has its own evaluation method; please refer the official repositories for result evaluation:  [AMBER](https://github.com/junyangwang0410/AMBER), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models)
