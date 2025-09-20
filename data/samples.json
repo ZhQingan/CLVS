@@ -1,0 +1,3 @@
+{"question_id": "R-Bench_1", "question": "Is the child standing on a lawn?", "label": "No", "image": "0013ea2087020901.jpg"}
+{"question_id": "R-Bench_2", "question": "Is the elephant wearing a saddle?", "label": "Yes", "image": "0032257bf3cd56d0.jpg"}
+{"question_id": "R-Bench_15", "question": "Is the garage located in front of the building?", "label": "Yes", "image": "00794645d77184eb.jpg"}
